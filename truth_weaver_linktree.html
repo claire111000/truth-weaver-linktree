@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>真相編織 | Truth Weaver</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #111;
+            background-image: radial-gradient(#333 1.5px, transparent 1.5px);
+            background-size: 24px 24px;
+            color: #E5E7EB; /* 柔和的淺灰色代替純白 */
+        }
+
+        /* Comic Book Aesthetics - Dark Mode */
+        .comic-border {
+            border: 2px solid #9CA3AF; /* 較細、較柔和的灰色邊框 */
+        }
+        
+        .comic-border-b {
+            border-bottom: 2px solid #9CA3AF;
+        }
+
+        .comic-shadow {
+            box-shadow: 6px 6px 0px 0px #9CA3AF; /* 柔和的灰色陰影 */
+        }
+
+        .comic-shadow-yellow {
+            box-shadow: 4px 4px 0px 0px #FACC15; /* 漫畫感的黃色陰影 */
+        }
+
+        .comic-btn {
+            transition: all 0.1s ease-in-out;
+        }
+
+        .comic-btn:hover {
+            background-color: #FACC15; /* 懸停時變為黃色 */
+            color: #111;
+            /* Press effect */
+            transform: translate(4px, 4px);
+            box-shadow: 0px 0px 0px 0px transparent;
+        }
+
+        /* Speech bubble pointer for dark section */
+        .speech-bubble {
+            position: relative;
+        }
+        .speech-bubble::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            border-width: 0 14px 14px 0;
+            border-style: solid;
+            border-color: transparent #9CA3AF transparent transparent;
+            display: block;
+            width: 0;
+        }
+        .speech-bubble::after {
+            content: '';
+            position: absolute;
+            top: -6px;
+            left: 23px;
+            border-width: 0 10px 10px 0;
+            border-style: solid;
+            border-color: transparent #111 transparent transparent;
+            display: block;
+            width: 0;
+        }
+
+        img {
+            background-color: #E5E7EB;
+            color: transparent;
+        }
+    </style>
+</head>
+<body class="min-h-screen py-10 px-4 md:px-8 relative selection:bg-yellow-400 selection:text-black">
+
+    <!-- Language Toggle Button -->
+    <div class="fixed top-4 right-4 z-50">
+        <button id="langToggleBtn" onclick="toggleLanguage()" class="bg-black text-gray-200 comic-border comic-shadow-yellow font-black py-2 px-4 rounded-lg cursor-pointer hover:bg-yellow-400 hover:text-black transition-colors" style="transition: all 0.1s;">
+            EN
+        </button>
+    </div>
+
+    <!-- Main Content Container -->
+    <main class="max-w-2xl mx-auto bg-black comic-border comic-shadow rounded-2xl overflow-hidden relative">
+        
+        <!-- Banner Image -->
+        <div class="w-full h-48 md:h-64 comic-border-b relative overflow-hidden bg-black">
+            <img src="main-visual.jpg" alt="Truth Weaver Banner" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='https://placehold.co/800x300/black/white?text=BANNER+IMAGE';">
+        </div>
+
+        <!-- Profile Icon (Overlapping) -->
+        <div class="flex justify-center -mt-16 md:-mt-20 relative z-10 px-4">
+            <img src="game-icon.jpg" alt="Truth Weaver Icon" class="w-32 h-32 md:w-40 md:h-40 rounded-full comic-border bg-black" style="box-shadow: 4px 4px 0px #fff;" onerror="this.onerror=null; this.src='https://placehold.co/200x200/black/white?text=ICON';">
+        </div>
+
+        <!-- Text Content Area -->
+        <div class="p-6 md:p-10 pt-4 md:pt-6">
+            
+            <!-- Game Logo (Inside white box for visibility) -->
+            <div class="flex justify-center mb-6">
+                <div class="bg-white rounded-xl py-2 px-4 inline-block comic-border">
+                    <img src="game-logo.png" alt="真相編織" class="h-16 md:h-20 object-contain" onerror="this.onerror=null; this.src='https://placehold.co/300x100/white/black?text=GAME+LOGO';">
+                </div>
+            </div>
+
+            <!-- Tags -->
+            <div class="flex flex-wrap justify-center gap-3 mb-10 font-bold text-sm md:text-base">
+                <span class="border-2 border-gray-400 px-3 py-1 rounded-full bg-black comic-shadow-yellow whitespace-nowrap">
+                    <span class="lang-zh">懸疑</span><span class="lang-en hidden">Suspense</span>
+                </span>
+                <span class="border-2 border-gray-400 px-3 py-1 rounded-full bg-black comic-shadow-yellow whitespace-nowrap">
+                    <span class="lang-zh">推理</span><span class="lang-en hidden">Mystery</span>
+                </span>
+                <span class="border-2 border-gray-400 px-3 py-1 rounded-full bg-black comic-shadow-yellow whitespace-nowrap">
+                    <span class="lang-zh">策略</span><span class="lang-en hidden">Strategy</span>
+                </span>
+                <span class="border-2 border-gray-400 px-3 py-1 rounded-full bg-black comic-shadow-yellow whitespace-nowrap">
+                    <span class="lang-zh">角色扮演</span><span class="lang-en hidden">RPG</span>
+                </span>
+            </div>
+
+            <!-- Intro / Speech Bubble (Moved above links) -->
+            <div class="mb-10 p-5 md:p-6 comic-border rounded-xl speech-bubble bg-black relative">
+                <p class="lang-zh text-base md:text-lg font-bold leading-relaxed text-gray-200">
+                    《真相編織》是一款以記者視角探查社會案件的懸疑推理遊戲，玩家透過採訪和上網蒐集，將情報整理至線索板，逐步還原案件樣貌。
+                </p>
+                <p class="lang-en hidden text-base md:text-lg font-bold leading-relaxed text-gray-200">
+                    "Truth Weaver" is a suspenseful mystery-solving game where players step into the shoes of a journalist investigating social cases. By conducting interviews and gathering information online, you will organize clues on a deduction board to piece together the truth behind each case.
+                </p>
+            </div>
+
+            <!-- Link Buttons -->
+            <div class="flex flex-col gap-4 mb-12">
+                <!-- Steam -->
+                <a href="#" class="comic-btn block w-full comic-border comic-shadow-yellow bg-black text-gray-200 font-black py-4 px-6 rounded-xl text-lg uppercase tracking-wider">
+                    <div class="flex items-center justify-between">
+                        <span class="flex items-center gap-3">
+                            <i class="fa-brands fa-steam text-2xl w-6 text-center"></i>
+                            Steam 
+                        </span>
+                        <span class="lang-zh text-xs border-2 border-current px-2 py-1 rounded-full">(連結待公開)</span>
+                        <span class="lang-en hidden text-xs border-2 border-current px-2 py-1 rounded-full">(Coming Soon)</span>
+                    </div>
+                </a>
+
+                <!-- Instagram -->
+                <a href="https://www.instagram.com/truth._.weaver/" target="_blank" rel="noopener noreferrer" class="comic-btn block w-full comic-border comic-shadow-yellow bg-black text-gray-200 font-black py-4 px-6 rounded-xl text-lg uppercase tracking-wider">
+                    <span class="flex items-center gap-3">
+                        <i class="fa-brands fa-instagram text-2xl w-6 text-center"></i> Instagram
+                    </span>
+                </a>
+
+                <!-- Facebook -->
+                <a href="https://www.facebook.com/profile.php?id=61560605518486" target="_blank" rel="noopener noreferrer" class="comic-btn block w-full comic-border comic-shadow-yellow bg-black text-gray-200 font-black py-4 px-6 rounded-xl text-lg uppercase tracking-wider">
+                    <span class="flex items-center gap-3">
+                        <i class="fa-brands fa-facebook-f text-2xl w-6 text-center"></i> Facebook
+                    </span>
+                </a>
+
+                <!-- X (Twitter) -->
+                <a href="https://x.com/Truth__Weaver" target="_blank" rel="noopener noreferrer" class="comic-btn block w-full comic-border comic-shadow-yellow bg-black text-gray-200 font-black py-4 px-6 rounded-xl text-lg uppercase tracking-wider">
+                    <span class="flex items-center gap-3">
+                        <i class="fa-brands fa-x-twitter text-2xl w-6 text-center"></i> X
+                    </span>
+                </a>
+
+                <!-- Threads -->
+                <a href="https://www.threads.com/@truth._.weaver" target="_blank" rel="noopener noreferrer" class="comic-btn block w-full comic-border comic-shadow-yellow bg-black text-gray-200 font-black py-4 px-6 rounded-xl text-lg uppercase tracking-wider">
+                    <span class="flex items-center gap-3">
+                        <i class="fa-brands fa-threads text-2xl w-6 text-center"></i> Threads
+                    </span>
+                </a>
+            </div>
+
+            <!-- Dev Team Section (Soft Gray Card) -->
+            <div class="text-sm md:text-base font-bold leading-relaxed border-2 border-gray-400 p-5 md:p-6 rounded-xl bg-gray-200 text-gray-900 comic-shadow">
+                <div class="flex flex-col items-center mb-5">
+                    <!-- Team Logo -->
+                    <img src="hexagon-logo-black.png" alt="Hexagon Studio" class="h-16 md:h-20 mb-2 object-contain" onerror="this.onerror=null; this.src='https://placehold.co/200x80/gray/black?text=HEXAGON+LOGO';">
+                    <h2 class="text-xl font-black uppercase tracking-widest border-b-2 border-gray-900 pb-1 inline-block">
+                        <span class="lang-zh">六角形 / Hexagon Studio</span>
+                        <span class="lang-en hidden">Hexagon Studio</span>
+                    </h2>
+                </div>
+
+                <!-- Removed text-justify to fix spacing issues -->
+                <div class="lang-zh text-left font-semibold">
+                    <p class="mb-3">六角形團隊在學生時期曾多次合作開發幾款遊戲，其中作品《真相編織》，榮獲 2024 金點新秀年度最佳設計獎等多項大獎肯定。</p>
+                    <p>經歷 4 場實體展覽、累積超過 300 位玩家的熱烈回饋與支持，我們於 2024 年 8 月正式展開商業化開發，並於 2025 年 2 月成立「六角形有限公司」。目前正全力開發《真相編織》，期待帶給大家好玩有趣的推理遊戲。</p>
+                </div>
+                <div class="lang-en hidden text-left font-semibold">
+                    <p class="mb-3">We are an independent game development team based in Taiwan. Having collaborated on several projects during our university years, our graduation title, Truth Weaver, was honored with the 2024 Best of Young Pin Design Award along with multiple accolades.</p>
+                    <p>Following participation in four offline exhibitions and gathering over 300 pieces of player feedback and support, we officially transitioned into commercial development in August 2024 and incorporated Hexagon Studio in February 2025. We are currently giving our all to the development of Truth Weaver, fully dedicated to delivering an engaging and unforgettable mystery game experience to players worldwide.</p>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <script>
+        // Language Toggle Logic
+        let currentLang = 'zh'; // Default language
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'zh' ? 'en' : 'zh';
+            
+            const zhElements = document.querySelectorAll('.lang-zh');
+            const enElements = document.querySelectorAll('.lang-en');
+            const btn = document.getElementById('langToggleBtn');
+
+            if (currentLang === 'en') {
+                // Switch to English
+                zhElements.forEach(el => el.classList.add('hidden'));
+                enElements.forEach(el => el.classList.remove('hidden'));
+                btn.innerText = '中文'; // Button shows option to switch back to Chinese
+            } else {
+                // Switch to Chinese
+                enElements.forEach(el => el.classList.add('hidden'));
+                zhElements.forEach(el => el.classList.remove('hidden'));
+                btn.innerText = 'EN'; // Button shows option to switch to English
+            }
+        }
+    </script>
+</body>
+</html>
